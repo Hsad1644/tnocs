@@ -14,7 +14,7 @@ class Mover {
   }
 
   checkEdges() {
-    // translate(-this.pos.x, -this.pos.y);
+    translate(-this.pos.x, -this.pos.y);
 
     if (this.pos.x + this.rad > width || this.pos.x - this.rad < 0) {
       this.vel.x *= -0.9;
@@ -26,6 +26,9 @@ class Mover {
       this.acc.y *= -0.9;
       // noLoop();
     }
+
+    translate(this.pos.x, this.pos.y);
+
   }
   applyForce(force) {
     let f = p5.Vector.div(force, this.mass);
@@ -40,7 +43,7 @@ class Mover {
     this.avel += this.aacc;
 
     this.avel = constrain(this.avel, -0.1, 0.1);
-    this.vel.limit(10);
+    this.vel.limit(1);
 
     this.angle += this.avel;
 
@@ -52,7 +55,7 @@ class Mover {
     fill(175, 200);
     push(); //Use push() to save the current state so the rotation of this shape doesn’t affect the rest of the world.
 
-    // translate(this.pos.x, this.pos.y);
+    translate(this.pos.x, this.pos.y);
 
     rotate(this.angle);
 
